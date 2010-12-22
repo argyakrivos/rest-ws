@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+	<xs:include schemaLocation="Coffee.xsd" />
+	<xs:include schemaLocation="Beverage.xsd" />
+	<xs:complexType name="Receipt">
+		<xs:sequence>
+			<xs:element name="receiptID" type="xs:int" minOccurs="1" maxOccurs="1" />
+			<xs:element name="coffees" type="Coffee" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="beverages" type="Beverage" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="totalPrice" type="xs:double" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

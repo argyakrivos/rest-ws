@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+	<xs:include schemaLocation="Coffee.xsd" />
+	<xs:include schemaLocation="Beverage.xsd" />
+	<xs:element name="Order">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="coffee" type="Coffee" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="beverage" type="Beverage" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="cash" type="xs:double" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

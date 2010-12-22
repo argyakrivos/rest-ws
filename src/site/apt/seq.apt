@@ -1,0 +1,58 @@
+	-----
+	REST-WS Sequence Diagram
+	-----
+ 	Group 1
+	-----
+ 	December 2010
+ 
+	The Sequence Diagram describes a scenario when a user (Alice) orders both coffees and
+	beverages and there are no errors in the system.
+	
+ 
+[./images/seq.png] Sequence Diagram
+
+	[[1.]] The Client makes an HTTP POST request to the OrderService to create a new order.
+	The OrderService:createOrder(Order) method is executed. The parameter of the
+	request is an XML file (serialized Java object based on the Order.xsd).
+	
+	[[2.]] The OrderService makes an HTTP PUT request to the TrayService to create a new
+	tray. The TrayService:createTray() method is executed. The parameter of the
+	requests is the receiptID.
+		
+		[[a.]] An HTTP Response is returned to the Order Service
+	
+	[[3.]] The OrderService makes an HTTP POST request to the CoffeeService to ask it to
+	make the coffees. The CoffeeService:makeCoffee(OrderInfo) method is executed.
+	The parameter of the request is an XML file (serialized Java object on the
+	OrderInfo.xsd).
+	
+	[[4.]] The CoffeeeService, after making the coffees, performs an HTTP POST request to the
+	TrayService to put the delivery on the tray. The TrayService:putDeliveriesOnTray(Delivery)
+	method is executed. The parameter of the request is an XML file (serialized Java object on
+	the Delivery.xsd).
+		
+		[[a.]] An HTTP Response is returned to the CoffeeService from the TrayService.
+		
+		[[b.]] An HTTP Response is returned to the OrderService from the CoffeeService.
+	
+	[[5.]] The OrderService makes an HTTP POST request to the BeverageService to ask it to
+	make the beverages. The BeverageService:makeBeverage(OrderInfo) method is
+	executed. The parameter of the request is an XML file (serialized Java object on the
+	OrderInfo.xsd).
+	
+	[[6.]] The BeverageService, after making the beverages, performs an HTTP POST request
+	to the TrayService to put the delivery on the tray. The TrayService:putDeliveriesOnTray(Delivery)
+	method is executed. The parameter of the request is an XML file (serialized Java object
+	on the Delivery.xsd).
+		
+		[[a.]] An HTTP Response is returned to the BeverageService from the TrayService.
+		
+		[[b.]] An HTTP Response is returned to the OrderService from the BeverageService.
+		
+		[[c.]] An HTTP Response is return to the Client from the OrderService. The response contains an XML based on the OrderResponse.xsd.
+	
+	[[7.]] The Client makes an HTTP GET Request to the TrayService to get the representation
+	of the ordered products. The TrayService:getTray(id) is executed. The parameter of
+	the request is the receiptID.
+		
+		[[a.]] An HTTP Response is returned from the TrayService. The representation is an XML file (serialized Java object on the TrayResponse.xsd).

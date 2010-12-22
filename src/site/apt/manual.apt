@@ -1,0 +1,47 @@
+	-----
+	REST-WS Install Manual
+	-----
+ 	Group 1
+	-----
+ 	December 2010
+ 	
+ 	REST-WS provides two properties files located in ${basedir}/src/main/resources.
+ 	
+config.properties
+
+	This file defines the items with their associated prices which are used in
+	the system.
+	
+	Also the "user.name" and "user.password" properties are defined for authentication.
+	These should be identical with the information found in the sec.properties file.
+	
+	One last property is the "https" one (on/off), defining the way the application will be
+	deployed on the application server.
+	
+sec.properties
+
+	This file defines the security realm used for authenticating users on the application
+	server. The format is:
+	
+----------------------------------------------------------------------------
+	user: password,role
+----------------------------------------------------------------------------
+ 
+Install instructions
+	
+	In order to install the application, the following steps have to be performed:
+	
+----------------------------------------------------------------------------
+	1. mvn clean
+	
+	/**
+	 * to generate a war file inside ${basedir}/target after passing predefined
+	 * functional tests done with soapUI 
+	 */
+	2. mvn install
+	
+	/**
+	 * to deploy the project on an embedded Jetty instance
+	 */
+	3. mvn jetty:run
+----------------------------------------------------------------------------
